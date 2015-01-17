@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.replica.replicaisland"
-        minSdkVersion 3
+        minSdkVersion 15
         targetSdkVersion 21
     }
 
@@ -16,4 +16,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.jimulabs.mirrorsandbox:mirror-sandbox:0.1.+'
 }
