@@ -363,6 +363,8 @@ public class Game extends AllocationGuard {
         start();
     }
 
+    Runnable onStartCallback;
+
     /** Starts the game running. */
     public void start() {
         if (!mRunning) {
@@ -378,6 +380,9 @@ public class Game extends AllocationGuard {
             AllocationGuard.sGuardActive = false;
         } else {
             mGameThread.resumeGame();
+        }
+        if (onStartCallback!=null) {
+            onStartCallback.run();
         }
     }
     
