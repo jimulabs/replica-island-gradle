@@ -5,12 +5,13 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
-import com.jimulabs.mirrorsandbox.MirrorAnimatorSandbox;
+import com.jimulabs.mirrorsandbox.MirrorSandboxBase;
+
 
 /**
  * Created by lintonye on 15-01-15.
  */
-public class MainBox extends MirrorAnimatorSandbox {
+public class MainBox extends MirrorSandboxBase {
     private Game mGame;
 
     public MainBox(View root) {
@@ -18,9 +19,9 @@ public class MainBox extends MirrorAnimatorSandbox {
     }
 
     @Override
-    public void enterSandbox() {
+    public void $onLayoutDone(View rootView) {
         mGame = new Game();
-        GLSurfaceView surfaceView = (GLSurfaceView) $(R.id.glsurfaceview).getView();
+        GLSurfaceView surfaceView = (GLSurfaceView) rootView.findViewById(R.id.glsurfaceview);
         mGame.setSurfaceView(surfaceView);
         Context context = surfaceView.getContext();
 
@@ -37,7 +38,7 @@ public class MainBox extends MirrorAnimatorSandbox {
 
         LevelTree.loadLevelTree(R.xml.level_tree, context);
         LevelTree.loadAllDialog(context);
-        mGame.setPendingLevel(LevelTree.get(19, 0));
+        mGame.setPendingLevel(LevelTree.get(3, 0));
 
         mGame.onStartCallback = new Runnable() {
             @Override
@@ -51,8 +52,7 @@ public class MainBox extends MirrorAnimatorSandbox {
     }
 
     @Override
-    public void destroySandbox() {
-        super.destroySandbox();
+    public void $onDestroy() {
         mGame.stop();
     }
 }

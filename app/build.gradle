@@ -23,5 +23,5 @@ repositories {
 }
 
 dependencies {
-    compile 'com.jimulabs.mirrorsandbox:mirror-sandbox:0.1.+'
+    compile 'com.jimulabs.mirrorsandbox:mirror-sandbox:0.2.0'
 }
